@@ -291,6 +291,53 @@
       color: rgba(240, 235, 224, 0.6);
     }
 
+    /* ── COUNTDOWN ─────────────────────────────── */
+    .hero-countdown {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      margin-bottom: 2.5rem;
+    }
+
+    .countdown-item {
+      text-align: center;
+      min-width: 4.5rem;
+    }
+
+    .countdown-num {
+      font-family: 'TAN Nimbus', serif;
+      font-size: clamp(2.2rem, 7vw, 4rem);
+      color: var(--white);
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+
+    .countdown-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.52rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(240, 235, 224, 0.3);
+      margin-top: 0.4rem;
+    }
+
+    .countdown-sep {
+      font-family: 'TAN Nimbus', serif;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: rgba(240, 235, 224, 0.2);
+      line-height: 1;
+      padding-bottom: 1.2rem;
+      margin: 0 0.2rem;
+      align-self: flex-start;
+      padding-top: 0.1rem;
+    }
+
+    @media (max-width: 400px) {
+      .countdown-item { min-width: 3.5rem; }
+      .countdown-sep { margin: 0; }
+    }
+
     .hero-location-name {
       font-family: 'TAN Nimbus', 'UnifrakturMaguntia', serif;
       font-size: clamp(1.4rem, 4vw, 2rem);
@@ -839,6 +886,28 @@
         <div class="hero-time">Ore 17:00</div>
       </div>
 
+      <div class="hero-countdown">
+        <div class="countdown-item">
+          <div class="countdown-num" id="cd-days">--</div>
+          <div class="countdown-label">Giorni</div>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-item">
+          <div class="countdown-num" id="cd-hours">--</div>
+          <div class="countdown-label">Ore</div>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-item">
+          <div class="countdown-num" id="cd-mins">--</div>
+          <div class="countdown-label">Minuti</div>
+        </div>
+        <div class="countdown-sep">:</div>
+        <div class="countdown-item">
+          <div class="countdown-num" id="cd-secs">--</div>
+          <div class="countdown-label">Secondi</div>
+        </div>
+      </div>
+
       <div class="hero-location-name">Ca' Salva</div>
       <div class="hero-location-addr">Via Venda, 1 — 35037 Teolo PD</div>
 
@@ -944,6 +1013,34 @@
       introEl.classList.add('fade-out');
       setTimeout(() => { introEl.style.display = 'none'; }, 800);
     }
+
+    // ── COUNTDOWN ────────────────────────────────
+    const target = new Date('2026-07-12T17:00:00');
+
+    function pad(n) { return String(n).padStart(2, '0'); }
+
+    function updateCountdown() {
+      const now  = new Date();
+      const diff = target - now;
+      if (diff <= 0) {
+        document.getElementById('cd-days').textContent  = '00';
+        document.getElementById('cd-hours').textContent = '00';
+        document.getElementById('cd-mins').textContent  = '00';
+        document.getElementById('cd-secs').textContent  = '00';
+        return;
+      }
+      const days  = Math.floor(diff / 86400000);
+      const hours = Math.floor((diff % 86400000) / 3600000);
+      const mins  = Math.floor((diff % 3600000)  / 60000);
+      const secs  = Math.floor((diff % 60000)    / 1000);
+      document.getElementById('cd-days').textContent  = pad(days);
+      document.getElementById('cd-hours').textContent = pad(hours);
+      document.getElementById('cd-mins').textContent  = pad(mins);
+      document.getElementById('cd-secs').textContent  = pad(secs);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
 
     // ── SCROLL REVEAL ────────────────────────────
     const observer = new IntersectionObserver(
