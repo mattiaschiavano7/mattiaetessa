@@ -102,6 +102,49 @@
       color: rgba(240,235,224,0.4);
       opacity: 0;
       animation: gateReveal 1s ease 1.2s forwards;
+      cursor: pointer;
+    }
+
+    .gate-return-btns {
+      display: flex;
+      gap: 0.8rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: gateReveal 1s ease 1.2s forwards;
+    }
+
+    .gate-return-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.4rem;
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      color: rgba(240,235,224,0.6);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .gate-return-btn:hover {
+      background: var(--cream-faint);
+      color: var(--white);
+      border-color: rgba(240,235,224,0.6);
+    }
+
+    .gate-return-btn--primary {
+      background: var(--cream);
+      color: var(--black);
+      border-color: var(--cream);
+    }
+
+    .gate-return-btn--primary:hover {
+      background: var(--white);
+      border-color: var(--white);
     }
 
     .gate-pulse {
@@ -826,14 +869,32 @@
 <body>
 
   <!-- ── GATE SCREEN ────────────────────────────── -->
-  <div id="gate" onclick="startIntro()">
+  <div id="gate">
     <div class="gate-names">
       Mattia
       <span class="gate-amp">&amp;</span>
       Tessa
     </div>
-    <div class="gate-cta">
+    <!-- Prima visita -->
+    <div id="gate-first" class="gate-cta" onclick="startIntro()">
       <span class="gate-pulse"></span>Tocca per entrare
+    </div>
+    <!-- Visite successive -->
+    <div id="gate-return" style="display:none; text-align:center;">
+      <div class="gate-return-btns">
+        <button class="gate-return-btn gate-return-btn--primary" onclick="startIntro()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          Guarda l'intro
+        </button>
+        <button class="gate-return-btn" onclick="goToSite()">
+          Vai al sito
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -968,29 +1029,40 @@
 
   <script>
     // ── GATE → VIDEO ──────────────────────────────
-    const gateEl   = document.getElementById('gate');
-    const introEl  = document.getElementById('video-intro');
-    const videoEl  = document.getElementById('intro-video');
+    const gateEl      = document.getElementById('gate');
+    const gateFirst   = document.getElementById('gate-first');
+    const gateReturn  = document.getElementById('gate-return');
+    const introEl     = document.getElementById('video-intro');
+    const videoEl     = document.getElementById('intro-video');
+
+    // Check if already seen
+    const hasSeen = localStorage.getItem('mt_intro_seen');
+    if (hasSeen) {
+      gateFirst.style.display  = 'none';
+      gateReturn.style.display = 'block';
+    }
 
     function startIntro() {
-      // Fade out gate
+      localStorage.setItem('mt_intro_seen', '1');
       gateEl.classList.add('fade-out');
       setTimeout(() => { gateEl.style.display = 'none'; }, 600);
 
-      // Show and play video with audio (user gesture unlocks it)
       introEl.classList.add('active');
       videoEl.muted = false;
       videoEl.volume = 1;
       videoEl.play().catch(() => {
-        // Fallback: play muted if browser still blocks
         videoEl.muted = true;
         videoEl.play();
       });
     }
 
+    function goToSite() {
+      gateEl.classList.add('fade-out');
+      setTimeout(() => { gateEl.style.display = 'none'; }, 600);
+    }
+
     videoEl.addEventListener('ended', skipIntro);
 
-    // Auto-skip fallback after 60s
     let autoSkip;
     videoEl.addEventListener('play', () => {
       autoSkip = setTimeout(skipIntro, 60000);
@@ -998,6 +1070,8 @@
 
     function skipIntro() {
       clearTimeout(autoSkip);
+      videoEl.pause();
+      videoEl.muted = true;
       introEl.classList.add('fade-out');
       setTimeout(() => { introEl.style.display = 'none'; }, 800);
     }
