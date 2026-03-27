@@ -89,7 +89,7 @@
     .gate-amp {
       font-family: 'TAN Nimbus', serif;
       font-size: clamp(1.5rem, 5vw, 3rem);
-      color: rgba(240,235,224,0.35);
+      color: var(--white);
       display: block;
       margin: 0.3rem 0;
     }
@@ -148,6 +148,12 @@
       height: 100%;
       object-fit: cover;
       object-position: center center;
+    }
+
+    @media (min-width: 768px) {
+      #intro-video {
+        object-fit: contain;
+      }
     }
 
     #skip-btn {
