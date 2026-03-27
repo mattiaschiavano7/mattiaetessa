@@ -55,17 +55,86 @@
       background-size: 200px 200px;
     }
 
+    /* ── GATE SCREEN ───────────────────────────── */
+    #gate {
+      position: fixed;
+      inset: 0;
+      z-index: 1001;
+      background: #000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: opacity 0.6s ease;
+    }
+
+    #gate.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .gate-names {
+      font-family: 'TAN Nimbus', serif;
+      font-size: clamp(3rem, 10vw, 7rem);
+      color: var(--white);
+      letter-spacing: 0.04em;
+      line-height: 1;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: gateReveal 1s ease 0.3s forwards;
+    }
+
+    .gate-amp {
+      font-family: 'TAN Nimbus', serif;
+      font-size: clamp(1.5rem, 5vw, 3rem);
+      color: rgba(240,235,224,0.35);
+      display: block;
+      margin: 0.3rem 0;
+    }
+
+    .gate-cta {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: rgba(240,235,224,0.4);
+      opacity: 0;
+      animation: gateReveal 1s ease 1.2s forwards;
+    }
+
+    .gate-pulse {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: rgba(240,235,224,0.5);
+      border-radius: 50%;
+      margin-right: 0.8rem;
+      animation: blink 1.4s ease-in-out infinite;
+    }
+
+    @keyframes gateReveal {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50%       { opacity: 1; }
+    }
+
     /* ── VIDEO INTRO ───────────────────────────── */
     #video-intro {
       position: fixed;
       inset: 0;
       z-index: 1000;
       background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: none;
       transition: opacity 0.8s ease;
     }
+
+    #video-intro.active { display: block; }
 
     #video-intro.fade-out {
       opacity: 0;
@@ -73,9 +142,12 @@
     }
 
     #intro-video {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center center;
     }
 
     #skip-btn {
@@ -94,38 +166,13 @@
       transition: all 0.2s;
       opacity: 0;
       animation: fadeIn 0.5s ease 1.5s forwards;
+      z-index: 10;
     }
 
     #skip-btn:hover {
       background: var(--cream-faint);
       color: var(--white);
       border-color: rgba(240, 235, 224, 0.7);
-    }
-
-    #sound-btn {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 2rem;
-      background: transparent;
-      border: 1px solid rgba(240, 235, 224, 0.4);
-      color: var(--cream-dim);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.5rem 1.1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      opacity: 0;
-      animation: fadeIn 0.5s ease 1.5s forwards;
-    }
-
-    #sound-btn:hover {
-      background: var(--cream-faint);
-      color: var(--white);
     }
 
     @keyframes fadeIn { to { opacity: 1; } }
@@ -680,19 +727,23 @@
 </head>
 <body>
 
+  <!-- ── GATE SCREEN ────────────────────────────── -->
+  <div id="gate" onclick="startIntro()">
+    <div class="gate-names">
+      Mattia
+      <span class="gate-amp">&amp;</span>
+      Tessa
+    </div>
+    <div class="gate-cta">
+      <span class="gate-pulse"></span>Tocca per entrare
+    </div>
+  </div>
+
   <!-- ── VIDEO INTRO ─────────────────────────────── -->
   <div id="video-intro">
-    <video id="intro-video" playsinline muted autoplay>
+    <video id="intro-video" playsinline>
       <source src="video-intro.mp4" type="video/mp4" />
     </video>
-    <button id="sound-btn" onclick="toggleSound()">
-      <svg id="sound-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-        <line x1="23" y1="9" x2="17" y2="15"/>
-        <line x1="17" y1="9" x2="23" y2="15"/>
-      </svg>
-      Audio off
-    </button>
     <button id="skip-btn" onclick="skipIntro()">Salta intro →</button>
   </div>
 
@@ -716,7 +767,7 @@
 
       <div class="hero-date">12 &nbsp;·&nbsp; 07 &nbsp;·&nbsp; 26</div>
 
-      <div class="hero-location-name">Ca' Salve</div>
+      <div class="hero-location-name">Ca' Salva</div>
       <div class="hero-location-addr">Via Venda, 1 — 35037 Teolo PD</div>
 
       <div class="hero-tags">
@@ -751,14 +802,14 @@
         <span class="section-label">Location</span>
         <div class="section-rule"></div>
       </div>
-      <h2 class="section-title reveal">Ca' Salve</h2>
+      <h2 class="section-title reveal">Ca' Salva</h2>
 
       <div class="location-card reveal">
-        <div class="location-name">Ca' Salve</div>
+        <div class="location-name">Ca' Salva</div>
         <div class="location-addr">Via Venda, 1 · 35037 Teolo PD</div>
         <div class="map-buttons">
           <a class="map-btn"
-             href="https://www.google.com/maps/search/?api=1&query=Ca%27%20Salve%2C%20Via%20Venda%2C%201%2C%2035037%20Teolo%20PD"
+             href="https://www.google.com/maps/search/?api=1&query=Ca%27%20Salva%2C%20Via%20Venda%2C%201%2C%2035037%20Teolo%20PD"
              target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
@@ -786,88 +837,13 @@
     </div>
   </section>
 
-  <!-- ── PROGRAMMA ──────────────────────────────── -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="section-header reveal">
-        <span class="section-num">02</span>
-        <span class="section-label">Programma</span>
-        <div class="section-rule"></div>
-      </div>
-      <h2 class="section-title reveal">La Giornata</h2>
-
-      <div class="coming-soon-box reveal">
-        <div class="coming-soon-badge">🎉 &nbsp; Coming Soon</div>
-        <p class="coming-soon-text">Il programma della giornata sarà svelato presto...</p>
-        <p class="coming-soon-spoiler">Spoiler: sarà una festa incredibile!</p>
-      </div>
-
-      <div class="timeline reveal">
-        <div class="timeline-item">
-          <div class="timeline-time">17:00</div>
-          <div class="timeline-sep"></div>
-          <div class="timeline-event">???</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">18:00</div>
-          <div class="timeline-sep"></div>
-          <div class="timeline-event">???</div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">Late</div>
-          <div class="timeline-sep"></div>
-          <div class="timeline-event">???</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── LISTA NOZZE ────────────────────────────── -->
-  <section class="section">
-    <div class="section-inner">
-      <div class="section-header reveal">
-        <span class="section-num">03</span>
-        <span class="section-label">Lista Nozze</span>
-        <div class="section-rule"></div>
-      </div>
-      <h2 class="section-title reveal">Un Pensiero per Noi</h2>
-
-      <div class="reveal">
-        <p class="nozze-intro">La vostra presenza è il regalo più grande.</p>
-        <p class="nozze-sub">Se desiderate contribuire al nostro viaggio di nozze:</p>
-
-        <div class="iban-card">
-          <div class="iban-row">
-            <div>
-              <div class="iban-label">Intestatario</div>
-              <div class="iban-value">Mattia &amp; Tessa</div>
-            </div>
-          </div>
-          <div class="iban-row">
-            <div>
-              <div class="iban-label">IBAN</div>
-              <div class="iban-value" id="iban-text">IT00 X000 0000 0000 0000 0000 000</div>
-            </div>
-            <button class="copy-btn" id="copy-iban-btn" onclick="copyIBAN()">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-              </svg>
-              Copia IBAN
-            </button>
-          </div>
-        </div>
-        <p class="causale-note">Causale: Regalo Mattia &amp; Tessa</p>
-      </div>
-    </div>
-  </section>
-
   <!-- ── FOOTER ─────────────────────────────────── -->
   <footer class="footer">
     <div class="ticket reveal">
       <div class="ticket-main">
         <div class="ticket-left">
           <div class="ticket-couple">Mattia &amp; Tessa</div>
-          <div class="ticket-date">12 Luglio 2026 · Ca' Salve · Teolo</div>
+          <div class="ticket-date">12 Luglio 2026 · Ca' Salva · Teolo</div>
         </div>
         <div class="ticket-right">
           <div class="ticket-msg">Vi aspettiamo!</div>
@@ -885,34 +861,39 @@
   </footer>
 
   <script>
-    // ── VIDEO INTRO ──────────────────────────────
-    const introEl   = document.getElementById('video-intro');
-    const videoEl   = document.getElementById('intro-video');
-    const soundBtn  = document.getElementById('sound-btn');
-    const soundIcon = document.getElementById('sound-icon');
-    let isMuted = true;
+    // ── GATE → VIDEO ──────────────────────────────
+    const gateEl   = document.getElementById('gate');
+    const introEl  = document.getElementById('video-intro');
+    const videoEl  = document.getElementById('intro-video');
 
-    videoEl.addEventListener('ended', () => skipIntro());
+    function startIntro() {
+      // Fade out gate
+      gateEl.classList.add('fade-out');
+      setTimeout(() => { gateEl.style.display = 'none'; }, 600);
 
-    // Auto-skip after 30s fallback
-    const autoSkip = setTimeout(skipIntro, 30000);
+      // Show and play video with audio (user gesture unlocks it)
+      introEl.classList.add('active');
+      videoEl.muted = false;
+      videoEl.volume = 1;
+      videoEl.play().catch(() => {
+        // Fallback: play muted if browser still blocks
+        videoEl.muted = true;
+        videoEl.play();
+      });
+    }
+
+    videoEl.addEventListener('ended', skipIntro);
+
+    // Auto-skip fallback after 60s
+    let autoSkip;
+    videoEl.addEventListener('play', () => {
+      autoSkip = setTimeout(skipIntro, 60000);
+    });
 
     function skipIntro() {
       clearTimeout(autoSkip);
       introEl.classList.add('fade-out');
       setTimeout(() => { introEl.style.display = 'none'; }, 800);
-    }
-
-    function toggleSound() {
-      isMuted = !isMuted;
-      videoEl.muted = isMuted;
-      if (isMuted) {
-        soundIcon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
-        soundBtn.childNodes[soundBtn.childNodes.length - 1].textContent = ' Audio off';
-      } else {
-        soundIcon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>';
-        soundBtn.childNodes[soundBtn.childNodes.length - 1].textContent = ' Audio on';
-      }
     }
 
     // ── SCROLL REVEAL ────────────────────────────
@@ -924,18 +905,6 @@
       el.style.transitionDelay = `${(i % 4) * 0.08}s`;
       observer.observe(el);
     });
-
-    // ── COPY IBAN ────────────────────────────────
-    function copyIBAN() {
-      const iban = document.getElementById('iban-text').textContent.trim();
-      const btn  = document.getElementById('copy-iban-btn');
-      navigator.clipboard.writeText(iban).then(() => {
-        const orig = btn.innerHTML;
-        btn.classList.add('copied');
-        btn.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><polyline points="20 6 9 17 4 12"/></svg> Copiato!`;
-        setTimeout(() => { btn.classList.remove('copied'); btn.innerHTML = orig; }, 2500);
-      });
-    }
   </script>
 </body>
 </html>
