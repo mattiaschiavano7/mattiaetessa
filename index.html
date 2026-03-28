@@ -189,14 +189,8 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       object-position: center center;
-    }
-
-    @media (min-width: 768px) {
-      #intro-video {
-        object-fit: contain;
-      }
     }
 
     #skip-btn {
@@ -1063,13 +1057,7 @@
 
     videoEl.addEventListener('ended', skipIntro);
 
-    let autoSkip;
-    videoEl.addEventListener('play', () => {
-      autoSkip = setTimeout(skipIntro, 60000);
-    });
-
     function skipIntro() {
-      clearTimeout(autoSkip);
       videoEl.pause();
       videoEl.muted = true;
       introEl.classList.add('fade-out');
