@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Mattia & Tessa | 12 Luglio 2026</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -55,175 +55,11 @@
       background-size: 200px 200px;
     }
 
-    /* ── GATE SCREEN ───────────────────────────── */
-    #gate {
-      position: fixed;
-      inset: 0;
-      z-index: 1001;
-      background: #000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: opacity 0.6s ease;
-    }
-
-    #gate.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .gate-names {
-      font-family: 'TAN Nimbus', serif;
-      font-size: clamp(3rem, 10vw, 7rem);
-      color: var(--white);
-      letter-spacing: 0.04em;
-      line-height: 1;
-      text-align: center;
-      margin-bottom: 1.5rem;
-      opacity: 0;
-      animation: gateReveal 1s ease 0.3s forwards;
-    }
-
-    .gate-amp {
-      font-family: 'TAN Nimbus', serif;
-      font-size: clamp(1.5rem, 5vw, 3rem);
-      color: var(--white);
-      display: block;
-      margin: 0.3rem 0;
-    }
-
-    .gate-cta {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: rgba(240,235,224,0.4);
-      opacity: 0;
-      animation: gateReveal 1s ease 1.2s forwards;
-      cursor: pointer;
-    }
-
-    .gate-return-btns {
-      display: flex;
-      gap: 0.8rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      opacity: 0;
-      animation: gateReveal 1s ease 1.2s forwards;
-    }
-
-    .gate-return-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.7rem 1.4rem;
-      background: transparent;
-      border: 1px solid var(--border-strong);
-      color: rgba(240,235,224,0.6);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    .gate-return-btn:hover {
-      background: var(--cream-faint);
-      color: var(--white);
-      border-color: rgba(240,235,224,0.6);
-    }
-
-    .gate-return-btn--primary {
-      background: var(--cream);
-      color: var(--black);
-      border-color: var(--cream);
-    }
-
-    .gate-return-btn--primary:hover {
-      background: var(--white);
-      border-color: var(--white);
-    }
-
-    .gate-pulse {
-      display: inline-block;
-      width: 6px;
-      height: 6px;
-      background: rgba(240,235,224,0.5);
-      border-radius: 50%;
-      margin-right: 0.8rem;
-      animation: blink 1.4s ease-in-out infinite;
-    }
-
-    @keyframes gateReveal {
-      from { opacity: 0; transform: translateY(12px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes blink {
-      0%, 100% { opacity: 0.2; }
-      50%       { opacity: 1; }
-    }
-
-    /* ── VIDEO INTRO ───────────────────────────── */
-    #video-intro {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background: #000;
-      display: none;
-      transition: opacity 0.8s ease;
-    }
-
-    #video-intro.active { display: block; }
-
-    #video-intro.fade-out {
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    #intro-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center center;
-    }
-
-    #skip-btn {
-      position: absolute;
-      bottom: 2.5rem;
-      right: 2rem;
-      background: transparent;
-      border: 1px solid rgba(240, 235, 224, 0.4);
-      color: var(--cream-dim);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 0.5rem 1.1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-      opacity: 0;
-      animation: fadeIn 0.5s ease 1.5s forwards;
-      z-index: 10;
-    }
-
-    #skip-btn:hover {
-      background: var(--cream-faint);
-      color: var(--white);
-      border-color: rgba(240, 235, 224, 0.7);
-    }
-
-    @keyframes fadeIn { to { opacity: 1; } }
-
     /* ── HERO ──────────────────────────────────── */
     .hero {
       position: relative;
       min-height: 100vh;
+      min-height: 100svh;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -335,7 +171,7 @@
     }
 
     /* ── COUNTDOWN ─────────────────────────────── */
-    .hero-countdown {
+    .countdown {
       display: flex;
       align-items: center;
       justify-content: center;
@@ -393,192 +229,368 @@
       letter-spacing: 0.12em;
       color: rgba(240, 235, 224, 0.35);
       text-transform: uppercase;
-      margin-bottom: 1.5rem;
-    }
-
-    .hero-map-btns {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.6rem;
-      justify-content: center;
-      margin-bottom: 3rem;
-    }
-
-    .hero-map-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--border-strong);
-      background: transparent;
-      color: rgba(240, 235, 224, 0.55);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.62rem;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: all 0.2s ease;
-    }
-
-    .hero-map-btn:hover {
-      background: var(--cream);
-      color: var(--black);
-      border-color: var(--cream);
-    }
-
-    .hero-map-btn svg { width: 12px; height: 12px; flex-shrink: 0; }
-
-    .hero-coming-soon {
-      border: 1px solid var(--border);
-      padding: 1.5rem 2rem;
-      text-align: left;
-      background: rgba(240, 235, 224, 0.02);
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    .hero-cs-badge {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(240, 235, 224, 0.3);
-      margin-bottom: 0.8rem;
-    }
-
-    .hero-cs-title {
-      font-family: 'TAN Nimbus', serif;
-      font-size: 1.1rem;
-      color: var(--white);
-      margin-bottom: 0.8rem;
-      line-height: 1.3;
-    }
-
-    .hero-cs-items {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .hero-cs-items li {
-      font-size: 0.78rem;
-      color: rgba(240, 235, 224, 0.45);
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .hero-cs-items li::before {
-      content: '';
-      width: 4px;
-      height: 4px;
-      background: rgba(240, 235, 224, 0.3);
-      transform: rotate(45deg);
-      flex-shrink: 0;
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      color: rgba(240, 235, 224, 0.25);
-      font-size: 0.58rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-family: 'Space Mono', monospace;
-    }
-
-    .scroll-hint-line {
-      width: 1px;
-      height: 2.5rem;
-      background: linear-gradient(to bottom, rgba(240,235,224,0.3), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.8; }
-    }
-
-    /* ── SECTIONS ──────────────────────────────── */
-    section {
-      position: relative;
-      z-index: 1;
-    }
-
-    .section {
-      padding: 5rem 1.5rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .section-inner {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
       margin-bottom: 2.5rem;
     }
 
-    .section-num {
+    /* ── HERO CTA (entra nell'area invitati) ────── */
+    .hero-cta-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.9rem;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.95rem 2rem;
+      background: var(--cream);
+      color: var(--black);
+      border: 1px solid var(--cream);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .hero-cta:hover { background: var(--white); border-color: var(--white); transform: translateY(-1px); }
+    .hero-cta svg { width: 14px; height: 14px; }
+
+    .hero-cta-note {
       font-family: 'Space Mono', monospace;
       font-size: 0.58rem;
-      color: rgba(240, 235, 224, 0.3);
-      letter-spacing: 0.1em;
-    }
-
-    .section-label {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: rgba(240, 235, 224, 0.4);
+      color: rgba(240, 235, 224, 0.3);
     }
 
-    .section-rule { flex: 1; height: 1px; background: var(--border); }
+    /* ============================================================
+       GUEST APP — flusso interattivo invitati
+       ============================================================ */
+    #guest-app {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      background: var(--cream);
+      display: none;
+    }
 
-    .section-title {
+    #guest-app.active { display: block; }
+
+    #guest-app.app-fade-in { animation: appFadeIn 0.6s ease; }
+
+    @keyframes appFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* Texture anche sopra l'app */
+    #guest-app::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.055;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* Top bar: tasto home + progress */
+    .app-topbar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      padding-top: max(1rem, env(safe-area-inset-top));
+    }
+
+    .app-home-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: transparent;
+      border: 1px solid var(--border-strong);
+      color: rgba(240, 235, 224, 0.6);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .app-home-btn:hover { background: var(--cream-faint); color: var(--white); border-color: rgba(240,235,224,0.6); }
+    .app-home-btn svg { width: 12px; height: 12px; }
+
+    .app-progress { display: flex; align-items: center; gap: 0.5rem; }
+    .app-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(240, 235, 224, 0.18);
+      transform: rotate(45deg);
+      transition: background 0.3s, transform 0.3s;
+    }
+    .app-dot.active { background: var(--cream); }
+    .app-dot.done   { background: rgba(240, 235, 224, 0.5); }
+
+    /* Step container */
+    .app-step {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 5rem 1.4rem 3rem;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      opacity: 0;
+      transform: translateY(16px);
+      pointer-events: none;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .app-step.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .app-card {
+      width: 100%;
+      max-width: 520px;
+      margin: auto;
+    }
+
+    .app-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(240, 235, 224, 0.35);
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .app-title {
       font-family: 'TAN Nimbus', 'UnifrakturMaguntia', serif;
-      font-size: clamp(2.2rem, 7vw, 4rem);
+      font-size: clamp(2rem, 7vw, 3.2rem);
       font-weight: 400;
       color: var(--white);
       line-height: 1.1;
-      margin-bottom: 2rem;
+      text-align: center;
+      margin-bottom: 1rem;
     }
 
-    /* ── LOCATION ──────────────────────────────── */
-    .location-card {
-      border: 1px solid var(--border);
-      padding: 2rem;
-      background: rgba(240, 235, 224, 0.02);
+    .app-text {
+      font-size: 0.95rem;
+      color: rgba(240, 235, 224, 0.65);
+      line-height: 1.7;
+      text-align: center;
+      margin-bottom: 1.8rem;
     }
 
-    .location-name {
-      font-family: 'TAN Nimbus', 'UnifrakturMaguntia', serif;
-      font-size: 1.8rem;
+    .app-text strong { color: var(--white); font-weight: 500; }
+
+    .app-divider {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 1.6rem 0;
+    }
+    .app-divider-line { flex: 1; height: 1px; background: var(--border); }
+    .app-divider-diamond { width: 6px; height: 6px; background: rgba(240,235,224,0.4); transform: rotate(45deg); }
+
+    /* Form fields */
+    .app-field { text-align: left; margin-bottom: 1.1rem; }
+
+    .app-label {
+      display: block;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(240, 235, 224, 0.4);
+      margin-bottom: 0.5rem;
+    }
+
+    .app-input {
+      width: 100%;
+      background: rgba(240, 235, 224, 0.03);
+      border: 1px solid var(--border-strong);
       color: var(--white);
-      margin-bottom: 0.4rem;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
     }
 
-    .location-addr {
+    .app-input::placeholder { color: rgba(240, 235, 224, 0.25); }
+    .app-input:focus { border-color: var(--cream); background: rgba(240, 235, 224, 0.05); }
+
+    /* Buttons */
+    .app-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      width: 100%;
+      padding: 0.9rem 1.8rem;
+      background: var(--cream);
+      color: var(--black);
       font-family: 'Space Mono', monospace;
       font-size: 0.72rem;
+      font-weight: 700;
       letter-spacing: 0.1em;
-      color: rgba(240, 235, 224, 0.4);
-      margin-bottom: 2rem;
       text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--cream);
+      cursor: pointer;
+      transition: all 0.2s ease;
     }
 
-    .map-buttons { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+    .app-btn:hover:not(:disabled) { background: var(--white); border-color: var(--white); }
+    .app-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .app-btn--outline {
+      background: transparent;
+      color: var(--cream);
+      border-color: var(--border-strong);
+    }
+    .app-btn--outline:hover:not(:disabled) { background: var(--cream-faint); color: var(--white); border-color: rgba(240,235,224,0.6); }
+
+    .app-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .app-btn-row { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1.4rem; }
+
+    /* WhatsApp button */
+    .app-wa-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      width: 100%;
+      padding: 0.9rem 1.6rem;
+      background: #25543f;
+      color: var(--white);
+      border: 1px solid #2f6b4f;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .app-wa-btn:hover { background: #2f6b4f; }
+    .app-wa-btn svg { width: 16px; height: 16px; }
+
+    .app-wa-group { display: flex; flex-direction: column; gap: 0.6rem; }
+
+    /* Inline error / hint */
+    .app-error {
+      font-size: 0.82rem;
+      color: #d8a7a0;
+      text-align: center;
+      margin-top: 0.4rem;
+      min-height: 1.1rem;
+    }
+
+    .app-note {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.04em;
+      color: rgba(240, 235, 224, 0.4);
+      text-align: center;
+      margin-top: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Quiz */
+    .quiz-q { text-align: left; margin-bottom: 1.7rem; }
+
+    .quiz-q-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.56rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(240, 235, 224, 0.3);
+      margin-bottom: 0.5rem;
+    }
+
+    .quiz-q-text {
+      font-size: 1rem;
+      color: var(--white);
+      font-weight: 400;
+      margin-bottom: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .app-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      border: 1px solid var(--border-strong);
+      background: rgba(240, 235, 224, 0.02);
+      color: rgba(240, 235, 224, 0.8);
+      font-family: 'Poppins', sans-serif;
+      font-weight: 300;
+      font-size: 0.92rem;
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.55rem;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+
+    .app-option:hover { background: var(--cream-faint); border-color: rgba(240,235,224,0.55); }
+
+    .app-option.selected {
+      background: var(--cream);
+      color: var(--black);
+      border-color: var(--cream);
+      font-weight: 400;
+    }
+
+    /* Card riquadro (alloggio / iban) */
+    .app-box {
+      border: 1px solid var(--border);
+      padding: 1.6rem 1.5rem;
+      background: rgba(240, 235, 224, 0.02);
+      text-align: left;
+      margin-bottom: 1.4rem;
+    }
+
+    .app-box-name {
+      font-family: 'TAN Nimbus', 'UnifrakturMaguntia', serif;
+      font-size: 1.6rem;
+      color: var(--white);
+      margin-bottom: 0.35rem;
+      line-height: 1.15;
+    }
+
+    .app-box-addr {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      color: rgba(240, 235, 224, 0.4);
+      text-transform: uppercase;
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
+    }
 
     .map-btn {
       display: inline-flex;
@@ -589,122 +601,67 @@
       background: transparent;
       color: rgba(240, 235, 224, 0.65);
       font-family: 'Space Mono', monospace;
-      font-size: 0.68rem;
+      font-size: 0.66rem;
       letter-spacing: 0.08em;
       text-decoration: none;
       text-transform: uppercase;
       transition: all 0.2s ease;
     }
-
-    .map-btn:hover {
-      background: var(--cream);
-      color: var(--black);
-      border-color: var(--cream);
-    }
-
+    .map-btn:hover { background: var(--cream); color: var(--black); border-color: var(--cream); }
     .map-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
 
-    /* ── PROGRAMMA ─────────────────────────────── */
-    .coming-soon-box {
+    .app-info-line {
+      font-size: 0.9rem;
+      color: rgba(240, 235, 224, 0.65);
+      line-height: 1.65;
+      border-top: 1px solid var(--border);
+      margin-top: 1.2rem;
+      padding-top: 1.2rem;
+    }
+    .app-info-line strong { color: var(--white); font-weight: 500; }
+
+    /* Riepilogo finale */
+    .summary {
       border: 1px solid var(--border);
-      padding: 1.5rem 2rem;
-      margin-bottom: 1.5rem;
-      background: rgba(240, 235, 224, 0.02);
+      overflow: hidden;
+      margin-bottom: 1.6rem;
     }
-
-    .coming-soon-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.6rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(240, 235, 224, 0.35);
-      margin-bottom: 0.8rem;
-    }
-
-    .coming-soon-text {
-      font-size: 0.95rem;
-      font-style: italic;
-      color: rgba(240, 235, 224, 0.6);
-      margin-bottom: 0.3rem;
-    }
-
-    .coming-soon-spoiler {
-      font-size: 0.75rem;
-      color: rgba(240, 235, 224, 0.35);
-      font-family: 'Space Mono', monospace;
-      letter-spacing: 0.04em;
-    }
-
-    .timeline { border: 1px solid var(--border); overflow: hidden; }
-
-    .timeline-item {
+    .summary-row {
       display: flex;
       align-items: center;
-      padding: 1.1rem 1.5rem;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.85rem 1.2rem;
       border-bottom: 1px solid var(--border);
-      gap: 1.5rem;
-      background: rgba(240, 235, 224, 0.015);
-      transition: background 0.2s;
+      background: rgba(240, 235, 224, 0.02);
     }
-
-    .timeline-item:last-child { border-bottom: none; }
-    .timeline-item:hover { background: rgba(240, 235, 224, 0.04); }
-
-    .timeline-time {
+    .summary-row:last-child { border-bottom: none; }
+    .summary-key {
       font-family: 'Space Mono', monospace;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: rgba(240, 235, 224, 0.5);
-      min-width: 3rem;
-      letter-spacing: 0.04em;
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(240, 235, 224, 0.4);
     }
+    .summary-val { font-size: 0.88rem; color: var(--white); text-align: right; }
 
-    .timeline-sep { width: 1px; height: 1.2rem; background: var(--border); }
-
-    .timeline-event {
-      font-size: 0.85rem;
-      color: rgba(240, 235, 224, 0.3);
-      font-style: italic;
-      letter-spacing: 0.08em;
-    }
-
-    /* ── LISTA NOZZE ───────────────────────────── */
-    .nozze-intro {
-      font-size: 1rem;
-      font-style: italic;
-      color: rgba(240, 235, 224, 0.65);
-      margin-bottom: 0.4rem;
-      line-height: 1.7;
-    }
-
-    .nozze-sub {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      color: rgba(240, 235, 224, 0.35);
-      letter-spacing: 0.05em;
-      margin-bottom: 2rem;
-    }
-
-    .iban-card { border: 1px solid var(--border); overflow: hidden; }
+    /* IBAN / regalo */
+    .iban-card { border: 1px solid var(--border); overflow: hidden; text-align: left; }
 
     .iban-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 1.1rem 1.5rem;
+      padding: 1.1rem 1.3rem;
       border-bottom: 1px solid var(--border);
       gap: 1rem;
       background: rgba(240, 235, 224, 0.02);
     }
-
     .iban-row:last-child { border-bottom: none; }
 
     .iban-label {
       font-family: 'Space Mono', monospace;
-      font-size: 0.58rem;
+      font-size: 0.55rem;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: rgba(240, 235, 224, 0.35);
@@ -713,10 +670,11 @@
 
     .iban-value {
       font-family: 'Space Mono', monospace;
-      font-size: 0.88rem;
+      font-size: 0.82rem;
       font-weight: 700;
       color: var(--white);
-      letter-spacing: 0.05em;
+      letter-spacing: 0.03em;
+      word-break: break-all;
     }
 
     .copy-btn {
@@ -728,7 +686,7 @@
       color: var(--black);
       border: none;
       font-family: 'Space Mono', monospace;
-      font-size: 0.62rem;
+      font-size: 0.6rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       cursor: pointer;
@@ -736,171 +694,141 @@
       white-space: nowrap;
       font-weight: 700;
     }
-
     .copy-btn:hover { background: var(--white); }
     .copy-btn.copied { background: #4a7c59; color: #fff; }
     .copy-btn svg { width: 11px; height: 11px; }
 
-    .causale-note {
-      margin-top: 1rem;
-      font-family: 'Space Mono', monospace;
-      font-size: 0.68rem;
-      color: rgba(240, 235, 224, 0.3);
-      letter-spacing: 0.08em;
-    }
+    /* Countdown compatto nel finale */
+    .countdown.compact { margin-bottom: 1.6rem; }
+    .countdown.compact .countdown-num { font-size: clamp(1.8rem, 6vw, 2.6rem); }
 
-    /* ── FOOTER / CONFIRM ──────────────────────── */
-    .footer {
-      position: relative;
-      z-index: 1;
-      padding: 5rem 1.5rem 4rem;
-      border-top: 1px solid var(--border);
-    }
-
-    .confirm-block {
-      max-width: 560px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .confirm-eyebrow {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.58rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: rgba(240, 235, 224, 0.3);
-      margin-bottom: 1rem;
-    }
-
-    .confirm-title {
-      font-family: 'TAN Nimbus', serif;
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
-      color: var(--white);
-      line-height: 1.15;
-      margin-bottom: 0.7rem;
-    }
-
-    .confirm-sub {
-      font-size: 0.82rem;
-      color: rgba(240, 235, 224, 0.4);
-      margin-bottom: 2.5rem;
-      letter-spacing: 0.02em;
-    }
-
-    .confirm-btns {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-bottom: 3rem;
-    }
-
-    .confirm-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.55rem;
-      padding: 0.85rem 1.8rem;
+    /* ── TEMA CHIARO (quiz / post-quiz) ────────── */
+    /* Sfondo crema opaco + testo scuro, per leggere meglio. */
+    .app-step.light {
       background: var(--cream);
-      color: var(--black);
-      font-family: 'Space Mono', monospace;
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border: 1px solid var(--cream);
-      transition: all 0.2s ease;
+      color: #1a1a1a;
     }
+    .app-step.light .app-eyebrow { color: rgba(0, 0, 0, 0.45); }
+    .app-step.light .app-title { color: #111; text-shadow: none; }
+    .app-step.light .app-text { color: rgba(0, 0, 0, 0.72); }
+    .app-step.light .app-text strong { color: #000; }
+    .app-step.light .quiz-q-num { color: rgba(0, 0, 0, 0.42); }
+    .app-step.light .quiz-q-text { color: #111; }
 
-    .confirm-btn:hover {
-      background: var(--white);
-      border-color: var(--white);
+    .app-step.light .app-option {
+      border-color: rgba(0, 0, 0, 0.22);
+      background: rgba(0, 0, 0, 0.02);
+      color: rgba(0, 0, 0, 0.8);
     }
-
-    .confirm-btn--outline {
-      background: transparent;
+    .app-step.light .app-option:hover {
+      background: rgba(0, 0, 0, 0.06);
+      border-color: rgba(0, 0, 0, 0.5);
+    }
+    .app-step.light .app-option.selected {
+      background: #111;
       color: var(--cream);
-      border-color: var(--border-strong);
+      border-color: #111;
     }
 
-    .confirm-btn--outline:hover {
-      background: var(--cream-faint);
-      color: var(--white);
-      border-color: rgba(240, 235, 224, 0.6);
+    .app-step.light .app-btn {
+      background: #111;
+      color: var(--cream);
+      border-color: #111;
     }
+    .app-step.light .app-btn:hover:not(:disabled) { background: #000; border-color: #000; }
+    .app-step.light .app-btn:disabled { opacity: 0.35; }
 
-    .confirm-footer-note {
-      font-family: 'Space Mono', monospace;
-      font-size: 0.55rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: rgba(240, 235, 224, 0.15);
+    .app-step.light .app-error { color: #9a3327; font-weight: 400; }
+
+    /* Form di login */
+    .app-step.light .app-label { color: rgba(0, 0, 0, 0.5); }
+    .app-step.light .app-input {
+      background: rgba(0, 0, 0, 0.02);
+      border-color: rgba(0, 0, 0, 0.25);
+      color: #111;
     }
+    .app-step.light .app-input::placeholder { color: rgba(0, 0, 0, 0.35); }
+    .app-step.light .app-input:focus { border-color: #111; background: rgba(0, 0, 0, 0.04); }
 
-    /* ── SCROLL ANIMATIONS ─────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
+    /* Box alloggio */
+    .app-step.light .app-box { border-color: rgba(0, 0, 0, 0.18); background: rgba(0, 0, 0, 0.02); }
+    .app-step.light .app-box-name { color: #111; }
+    .app-step.light .app-box-addr { color: rgba(0, 0, 0, 0.5); }
+    .app-step.light .app-info-line { color: rgba(0, 0, 0, 0.72); border-top-color: rgba(0, 0, 0, 0.15); }
+    .app-step.light .app-info-line strong { color: #000; }
+
+    /* Bottone mappa */
+    .app-step.light .map-btn { border-color: rgba(0, 0, 0, 0.3); color: rgba(0, 0, 0, 0.72); }
+    .app-step.light .map-btn:hover { background: #111; color: var(--cream); border-color: #111; }
+
+    /* Divider + note */
+    .app-step.light .app-divider-line { background: rgba(0, 0, 0, 0.15); }
+    .app-step.light .app-divider-diamond { background: rgba(0, 0, 0, 0.4); }
+    .app-step.light .app-note { color: rgba(0, 0, 0, 0.55); }
+
+    /* Countdown (finale) */
+    .app-step.light .countdown-num { color: #111; }
+    .app-step.light .countdown-label { color: rgba(0, 0, 0, 0.4); }
+    .app-step.light .countdown-sep { color: rgba(0, 0, 0, 0.25); }
+
+    /* Riepilogo */
+    .app-step.light .summary { border-color: rgba(0, 0, 0, 0.18); }
+    .app-step.light .summary-row { border-bottom-color: rgba(0, 0, 0, 0.12); background: rgba(0, 0, 0, 0.02); }
+    .app-step.light .summary-key { color: rgba(0, 0, 0, 0.5); }
+    .app-step.light .summary-val { color: #111; }
+
+    /* IBAN */
+    .app-step.light .iban-card { border-color: rgba(0, 0, 0, 0.18); }
+    .app-step.light .iban-row { border-bottom-color: rgba(0, 0, 0, 0.12); background: rgba(0, 0, 0, 0.02); }
+    .app-step.light .iban-label { color: rgba(0, 0, 0, 0.5); }
+    .app-step.light .iban-value { color: #111; }
+    .app-step.light .copy-btn { background: #111; color: var(--cream); }
+    .app-step.light .copy-btn:hover { background: #000; }
+    .app-step.light .copy-btn.copied { background: #4a7c59; color: #fff; }
+
+    /* Bottone outline */
+    .app-step.light .app-btn--outline { background: transparent; color: #111; border-color: rgba(0, 0, 0, 0.3); }
+    .app-step.light .app-btn--outline:hover:not(:disabled) { background: rgba(0, 0, 0, 0.08); color: #000; border-color: rgba(0, 0, 0, 0.6); }
+
+    /* Topbar adattata quando lo step attivo è chiaro */
+    #guest-app.app-light .app-home-btn {
+      border-color: rgba(0, 0, 0, 0.3);
+      color: rgba(0, 0, 0, 0.65);
     }
+    #guest-app.app-light .app-home-btn:hover { background: rgba(0, 0, 0, 0.08); color: #000; }
+    #guest-app.app-light .app-dot { background: rgba(0, 0, 0, 0.2); }
+    #guest-app.app-light .app-dot.active { background: #111; }
+    #guest-app.app-light .app-dot.done { background: rgba(0, 0, 0, 0.5); }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── RESPONSIVE ────────────────────────────── */
     @media (max-width: 500px) {
-      .hero-names { gap: 0.8rem; }
-      .hero-tags { gap: 1.2rem; padding: 0.8rem 1.2rem; }
       .iban-row { flex-direction: column; align-items: flex-start; }
-      .ticket-main { flex-direction: column; }
-      .ticket-right { text-align: left; }
-      .ticket-stub { flex-direction: column; }
+    }
+
+    /* ── FOGLIO STAMPABILE / PDF ───────────────── */
+    #print-sheet { display: none; }
+
+    #print-sheet .ps-wrap { padding: 24px 28px; color: #111; }
+    #print-sheet .ps-names { font-family: 'TAN Nimbus', serif; font-size: 38px; color: #111; text-align: center; line-height: 1; margin-bottom: 6px; }
+    #print-sheet .ps-sub { font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: #555; text-align: center; margin-bottom: 22px; }
+    #print-sheet .ps-hello { font-family: 'TAN Nimbus', serif; font-size: 24px; color: #111; margin-bottom: 14px; }
+    #print-sheet .ps-row { display: flex; justify-content: space-between; gap: 18px; padding: 9px 0; border-bottom: 1px solid #ddd; font-size: 13px; }
+    #print-sheet .ps-key { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: #777; }
+    #print-sheet .ps-val { color: #111; text-align: right; font-weight: 500; }
+    #print-sheet .ps-note { font-size: 12px; color: #444; margin-top: 16px; line-height: 1.6; }
+    #print-sheet .ps-foot { font-family: 'TAN Nimbus', serif; font-size: 16px; color: #111; text-align: center; margin-top: 22px; }
+
+    @media print {
+      @page { margin: 14mm; }
+      body { background: #fff !important; }
+      body::before { display: none !important; }
+      body > *:not(#print-sheet) { display: none !important; }
+      #print-sheet { display: block !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── GATE SCREEN ────────────────────────────── -->
-  <div id="gate">
-    <div class="gate-names">
-      Mattia
-      <span class="gate-amp">&amp;</span>
-      Tessa
-    </div>
-    <!-- Prima visita -->
-    <div id="gate-first" class="gate-cta" onclick="startIntro()">
-      <span class="gate-pulse"></span>Tocca per entrare
-    </div>
-    <!-- Visite successive -->
-    <div id="gate-return" style="display:none; text-align:center;">
-      <div class="gate-return-btns">
-        <button class="gate-return-btn gate-return-btn--primary" onclick="startIntro()">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-            <polygon points="5 3 19 12 5 21 5 3"/>
-          </svg>
-          Guarda l'intro
-        </button>
-        <button class="gate-return-btn" onclick="goToSite()">
-          Vai al sito
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-            <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── VIDEO INTRO ─────────────────────────────── -->
-  <div id="video-intro">
-    <video id="intro-video" playsinline>
-      <source src="video-intro.mp4" type="video/mp4" />
-    </video>
-    <button id="skip-btn" onclick="skipIntro()">Salta intro →</button>
-  </div>
-
-  <!-- ── HERO ───────────────────────────────────── -->
+  <!-- ── HOME / HERO ─────────────────────────────── -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-inner">
@@ -921,27 +849,27 @@
       <div class="hero-date-row">
         <div class="hero-date">12 &nbsp;·&nbsp; 07 &nbsp;·&nbsp; 26</div>
         <div class="hero-date-sep"></div>
-        <div class="hero-time">Ore 17:00</div>
+        <div class="hero-time">Ore 19:00</div>
       </div>
 
-      <div class="hero-countdown">
+      <div class="countdown">
         <div class="countdown-item">
-          <div class="countdown-num" id="cd-days">--</div>
+          <div class="countdown-num js-cd-days">--</div>
           <div class="countdown-label">Giorni</div>
         </div>
         <div class="countdown-sep">:</div>
         <div class="countdown-item">
-          <div class="countdown-num" id="cd-hours">--</div>
+          <div class="countdown-num js-cd-hours">--</div>
           <div class="countdown-label">Ore</div>
         </div>
         <div class="countdown-sep">:</div>
         <div class="countdown-item">
-          <div class="countdown-num" id="cd-mins">--</div>
+          <div class="countdown-num js-cd-mins">--</div>
           <div class="countdown-label">Minuti</div>
         </div>
         <div class="countdown-sep">:</div>
         <div class="countdown-item">
-          <div class="countdown-num" id="cd-secs">--</div>
+          <div class="countdown-num js-cd-secs">--</div>
           <div class="countdown-label">Secondi</div>
         </div>
       </div>
@@ -949,158 +877,247 @@
       <div class="hero-location-name">Ca' Salva</div>
       <div class="hero-location-addr">Via Venda, 1 — 35037 Teolo PD</div>
 
-      <div class="hero-map-btns">
-        <a class="hero-map-btn"
-           href="https://www.google.com/maps/search/?api=1&query=Ca%27%20Salva%2C%20Via%20Venda%2C%201%2C%2035037%20Teolo%20PD"
-           target="_blank" rel="noopener">
+      <div class="hero-cta-wrap">
+        <button class="hero-cta" id="enter-app" type="button">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+            <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/>
           </svg>
-          Google Maps
-        </a>
-        <a class="hero-map-btn"
-           href="https://waze.com/ul?ll=45.3477,11.6872&navigate=yes"
-           target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
-          </svg>
-          Waze
-        </a>
-        <a class="hero-map-btn"
-           href="https://maps.apple.com/?address=Via%20Venda%2C%201%2C%2035037%20Teolo%20PD&ll=45.3477,11.6872"
-           target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/>
-          </svg>
-          Apple Maps
-        </a>
+          Entra nell'area invitati
+        </button>
+        <div class="hero-cta-note">Accesso riservato agli invitati</div>
       </div>
-
-      <div class="hero-coming-soon">
-        <div class="hero-cs-badge">· Prossimamente ·</div>
-        <div class="hero-cs-title">Altre informazioni in arrivo</div>
-        <ul class="hero-cs-items">
-          <li>Programma della giornata</li>
-          <li>Info alloggio per gli ospiti</li>
-          <li>Lista nozze</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="scroll-hint">
-      <span>Scorri</span>
-      <div class="scroll-hint-line"></div>
     </div>
   </section>
 
-  <!-- ── FOOTER ─────────────────────────────────── -->
-  <footer class="footer">
-    <div class="confirm-block reveal">
-      <div class="confirm-eyebrow">· RSVP ·</div>
-      <div class="confirm-title">Conferma la tua partecipazione</div>
-      <p class="confirm-sub">Scrivici su WhatsApp il prima possibile</p>
-      <div class="confirm-btns">
-        <a class="confirm-btn"
-           href="https://wa.me/393454463802?text=Ciao%20Mattia!%20Confermo%20la%20mia%20partecipazione%20al%20vostro%20matrimonio%20%F0%9F%8E%89"
-           target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          Scrivi a Mattia
-        </a>
-        <a class="confirm-btn confirm-btn--outline"
-           href="https://wa.me/393487200087?text=Ciao%20Tessa!%20Confermo%20la%20mia%20partecipazione%20al%20vostro%20matrimonio%20%F0%9F%8E%89"
-           target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-          </svg>
-          Scrivi a Tessa
-        </a>
-      </div>
-      <div class="confirm-footer-note">TICKET NO: MT120726 · ADMIT ONE</div>
+  <!-- ============================================================
+       GUEST APP — popolata dinamicamente da app.js
+       ============================================================ -->
+  <div id="guest-app" aria-hidden="true">
+    <div class="app-topbar">
+      <button class="app-home-btn" id="app-home-btn" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Home
+      </button>
+      <div class="app-progress" id="app-progress" aria-hidden="true"></div>
     </div>
-  </footer>
 
-  <script>
-    // ── GATE → VIDEO ──────────────────────────────
-    const gateEl      = document.getElementById('gate');
-    const gateFirst   = document.getElementById('gate-first');
-    const gateReturn  = document.getElementById('gate-return');
-    const introEl     = document.getElementById('video-intro');
-    const videoEl     = document.getElementById('intro-video');
+    <!-- STEP 0 — LOGIN -->
+    <section class="app-step light" id="step-login" data-progress="0">
+      <div class="app-card">
+        <div class="app-eyebrow">· Accesso invitati ·</div>
+        <h2 class="app-title">Benvenuto</h2>
+        <p class="app-text">Inserisci il tuo nome e cognome come li trovi sull'invito,<br>per accedere alle informazioni dedicate a te.</p>
 
-    // Check if already seen
-    const hasSeen = localStorage.getItem('mt_intro_seen');
-    if (hasSeen) {
-      gateFirst.style.display  = 'none';
-      gateReturn.style.display = 'block';
-    }
+        <form id="login-form" autocomplete="off" novalidate>
+          <div class="app-field">
+            <label class="app-label" for="login-nome">Nome</label>
+            <input class="app-input" id="login-nome" type="text" inputmode="text" placeholder="Es. Tessa" required />
+          </div>
+          <div class="app-field">
+            <label class="app-label" for="login-cognome">Cognome</label>
+            <input class="app-input" id="login-cognome" type="text" inputmode="text" placeholder="Es. Santagostino" required />
+          </div>
+          <div class="app-error" id="login-error"></div>
+          <div class="app-btn-row">
+            <button class="app-btn" type="submit">
+              Entra
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </button>
+          </div>
+        </form>
 
-    function startIntro() {
-      localStorage.setItem('mt_intro_seen', '1');
-      gateEl.classList.add('fade-out');
-      setTimeout(() => { gateEl.style.display = 'none'; }, 600);
+        <!-- Mostrato solo se nessun match (pulsanti generati da app.js) -->
+        <div id="login-help" style="display:none; margin-top:1.2rem;">
+          <div class="app-wa-group" id="login-wa"></div>
+        </div>
+      </div>
+    </section>
 
-      introEl.classList.add('active');
-      videoEl.muted = false;
-      videoEl.volume = 1;
-      videoEl.play().catch(() => {
-        videoEl.muted = true;
-        videoEl.play();
-      });
-    }
+    <!-- STEP 1 — QUIZ -->
+    <section class="app-step light" id="step-quiz" data-progress="1">
+      <div class="app-card">
+        <div class="app-eyebrow">· Mini quiz ·</div>
+        <h2 class="app-title" id="quiz-hello">Ciao!</h2>
+        <p class="app-text">Prima di svelarti tutto, tre domande veloci sul nostro matrimonio.<br>Rispondi a tutte per sbloccare le informazioni 😉</p>
+        <form id="quiz-form">
+          <div id="quiz-questions"></div>
+          <div class="app-error" id="quiz-error"></div>
+          <div class="app-btn-row">
+            <button class="app-btn" type="submit" id="quiz-submit" disabled>Verifica le risposte</button>
+          </div>
+        </form>
+      </div>
+    </section>
 
-    function goToSite() {
-      gateEl.classList.add('fade-out');
-      setTimeout(() => { gateEl.style.display = 'none'; }, 600);
-    }
+    <!-- STEP 1c — CONGRATULAZIONI (quiz superato) -->
+    <section class="app-step light" id="step-congrats" data-progress="1">
+      <div class="app-card" style="text-align:center;">
+        <div class="app-eyebrow">· Quiz superato ·</div>
+        <h2 class="app-title">Complimenti!</h2>
+        <p class="app-text" id="congrats-text"></p>
+        <div class="app-btn-row">
+          <button class="app-btn" id="congrats-continue" type="button">
+            Scopri dove dormirai
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
 
-    videoEl.addEventListener('ended', skipIntro);
+    <!-- STEP 1b — BLOCCO QUIZ -->
+    <section class="app-step light" id="step-locked" data-progress="1">
+      <div class="app-card" style="text-align:center;">
+        <div class="app-eyebrow">· Ops ·</div>
+        <h2 class="app-title">Quasi!</h2>
+        <p class="app-text" id="locked-text"></p>
+        <div class="app-wa-group" id="locked-wa"></div>
+      </div>
+    </section>
 
-    function skipIntro() {
-      videoEl.pause();
-      videoEl.muted = true;
-      introEl.classList.add('fade-out');
-      setTimeout(() => { introEl.style.display = 'none'; }, 800);
-    }
+    <!-- STEP 2 — ALLOGGIO -->
+    <section class="app-step light" id="step-hotel" data-progress="2">
+      <div class="app-card">
+        <div class="app-eyebrow">· Il tuo alloggio ·</div>
+        <h2 class="app-title">Dove dormirai</h2>
+        <div id="hotel-content"></div>
+        <div class="app-btn-row">
+          <button class="app-btn" id="hotel-continue" type="button">
+            Continua
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
 
-    // ── COUNTDOWN ────────────────────────────────
-    const target = new Date('2026-07-12T17:00:00');
+    <!-- STEP 3 — NAVETTA -->
+    <section class="app-step light" id="step-navetta" data-progress="3">
+      <div class="app-card">
+        <div class="app-eyebrow">· Spostamenti ·</div>
+        <h2 class="app-title">La navetta</h2>
+        <p class="app-text" id="navetta-text"></p>
+        <div id="navetta-options"></div>
+        <div class="app-error" id="navetta-error"></div>
+        <div class="app-btn-row">
+          <button class="app-btn" id="navetta-continue" type="button" disabled>
+            Continua
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
 
-    function pad(n) { return String(n).padStart(2, '0'); }
+    <!-- STEP 4 — BRUNCH -->
+    <section class="app-step light" id="step-brunch" data-progress="4">
+      <div class="app-card">
+        <div class="app-eyebrow">· Il giorno dopo ·</div>
+        <h2 class="app-title">Brunch di lunedì</h2>
+        <p class="app-text">Lunedì non finisce la festa! Vi aspettiamo per un <strong>brunch con festa in piscina</strong>, dalle <strong>11:30 alle 19:30</strong>. Relax, cibo e ultimi tuffi prima dei saluti.</p>
+        <p class="app-text" style="margin-bottom:1.2rem;"><strong>Parteciperai al brunch di lunedì?</strong></p>
+        <div id="brunch-options"></div>
+        <div class="app-error" id="brunch-error"></div>
+        <div class="app-btn-row">
+          <button class="app-btn" id="brunch-continue" type="button" disabled>
+            Concludi
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
 
-    function updateCountdown() {
-      const now  = new Date();
-      const diff = target - now;
-      if (diff <= 0) {
-        document.getElementById('cd-days').textContent  = '00';
-        document.getElementById('cd-hours').textContent = '00';
-        document.getElementById('cd-mins').textContent  = '00';
-        document.getElementById('cd-secs').textContent  = '00';
-        return;
-      }
-      const days  = Math.floor(diff / 86400000);
-      const hours = Math.floor((diff % 86400000) / 3600000);
-      const mins  = Math.floor((diff % 3600000)  / 60000);
-      const secs  = Math.floor((diff % 60000)    / 1000);
-      document.getElementById('cd-days').textContent  = pad(days);
-      document.getElementById('cd-hours').textContent = pad(hours);
-      document.getElementById('cd-mins').textContent  = pad(mins);
-      document.getElementById('cd-secs').textContent  = pad(secs);
-    }
+    <!-- STEP 5 — FINALE / REGALO -->
+    <section class="app-step light" id="step-final" data-progress="5">
+      <div class="app-card">
+        <div class="app-eyebrow">· Ci siamo ·</div>
+        <h2 class="app-title" id="final-hello">Grazie!</h2>
+        <p class="app-text">Abbiamo registrato le tue risposte. Non vediamo l'ora di festeggiare con te!</p>
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+        <div class="countdown compact">
+          <div class="countdown-item">
+            <div class="countdown-num js-cd-days">--</div>
+            <div class="countdown-label">Giorni</div>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item">
+            <div class="countdown-num js-cd-hours">--</div>
+            <div class="countdown-label">Ore</div>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item">
+            <div class="countdown-num js-cd-mins">--</div>
+            <div class="countdown-label">Minuti</div>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item">
+            <div class="countdown-num js-cd-secs">--</div>
+            <div class="countdown-label">Secondi</div>
+          </div>
+        </div>
 
-    // ── SCROLL REVEAL ────────────────────────────
-    const observer = new IntersectionObserver(
-      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
-      { threshold: 0.1, rootMargin: '0px 0px -30px 0px' }
-    );
-    document.querySelectorAll('.reveal').forEach((el, i) => {
-      el.style.transitionDelay = `${(i % 4) * 0.08}s`;
-      observer.observe(el);
-    });
-  </script>
+        <div class="summary" id="final-summary"></div>
+        <div class="app-note" id="final-sync-note" style="display:none;"></div>
+
+        <div class="app-btn-row" style="margin-top:1.3rem;">
+          <button class="app-btn" id="save-image" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Salva riepilogo (immagine)
+          </button>
+          <button class="app-btn app-btn--outline" id="save-pdf" type="button">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+            Salva come PDF
+          </button>
+        </div>
+        <div class="app-note" id="save-hint" style="display:none;"></div>
+
+        <div class="app-divider">
+          <div class="app-divider-line"></div>
+          <div class="app-divider-diamond"></div>
+          <div class="app-divider-line"></div>
+        </div>
+
+        <div class="app-eyebrow">· Un regalo? ·</div>
+        <p class="app-text" id="gift-text"></p>
+
+        <div class="iban-card">
+          <div class="iban-row">
+            <div>
+              <div class="iban-label">IBAN</div>
+              <div class="iban-value" id="iban-value">IT53I0503401631000000019468</div>
+            </div>
+            <button class="copy-btn" id="copy-iban" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copia
+            </button>
+          </div>
+          <div class="iban-row">
+            <div>
+              <div class="iban-label">Intestato a</div>
+              <div class="iban-value" id="iban-holder" style="font-weight:400;">Mattia Schiavano e Tessa Santagostino</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="app-btn-row">
+          <button class="app-btn app-btn--outline" id="final-home" type="button">Torna alla home</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Foglio stampabile (riempito da app.js, visibile solo in stampa/PDF) -->
+  <div id="print-sheet" aria-hidden="true"></div>
+
+  <script src="app.js" defer></script>
 </body>
 </html>
