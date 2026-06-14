@@ -106,15 +106,11 @@ const MESSAGES = {
 
   // STEP 2 — caso ospiti che dormono in location (Ca' Salva)
   hotelLocation:
-    "Dormirai direttamente in <strong>location</strong>, comodissimo! La cerimonia inizia alle <strong>19:00</strong> e ci si può sistemare in struttura già dal pomeriggio: per il check-in basta dire il tuo nome alla reception.",
+    "Voi siete di casa: dormite proprio qui a <strong>Ca' Salva</strong>. Niente spostamenti né sveglie all'alba, la mattina dopo siete già al brunch in ciabatte. Il check-in si può fare dal pomeriggio: basta dire il vostro nome alla reception.",
 
   // STEP 3 — testo navetta (caso normale)
   navettaText:
     "Per raggiungere la location senza pensieri abbiamo organizzato una <strong>navetta</strong> dall'hotel a Ca' Salva, con <strong>andata e ritorno</strong> a fine serata. Così potete brindare in tutta tranquillità!",
-
-  // STEP 3 — testo navetta per chi dorme in location (solo ritorno non serve)
-  navettaTextLocation:
-    "Dormendo già in location non hai pensieri di spostamento per il rientro 🎉. Se però vuoi raggiungere altri luoghi con il gruppo, facci sapere se preferiresti usare la <strong>navetta</strong> o muoverti con la <strong>tua auto</strong>.",
 
   // STEP 5 — testo regalo / lista nozze
   giftText:
@@ -682,11 +678,7 @@ function prepareHotel() {
    ========================================================================== */
 
 function prepareNavetta() {
-  const g = state.guest;
-  const isLocation = g.hotel === "Ca' Salva";
-
-  document.getElementById("navetta-text").innerHTML =
-    isLocation ? MESSAGES.navettaTextLocation : MESSAGES.navettaText;
+  document.getElementById("navetta-text").innerHTML = MESSAGES.navettaText;
 
   const opts = [
     { value: "navetta", label: "Sì, uso la navetta" },
@@ -774,7 +766,7 @@ function initBrunch() {
    ========================================================================== */
 
 const LABELS = {
-  navetta: { navetta: "Navetta", auto: "Auto propria" },
+  navetta: { navetta: "Navetta", auto: "Auto propria", non_applicabile: "Dorme in location" },
   brunch: { solo_brunch: "Solo brunch", brunch_piscina: "Brunch + piscina", no: "Non partecipo" },
 };
 
@@ -1110,7 +1102,7 @@ function buildPayload() {
     cognome: g.cognome || "",
     hotel: g.hotel || (g.alloggioAutonomo ? "Autonomo" : ""),
     quizSuperato: true,
-    navetta: state.navetta === "navetta" ? "navetta" : "auto",
+    navetta: state.navetta || "", // "navetta" | "auto" | "non_applicabile"
     brunch: state.brunch || "no",
     chiFaRidere: state.chiFaRidere || "", // risposta alla domanda "per gioco"
     timestamp: new Date().toISOString(),
@@ -1225,10 +1217,18 @@ document.addEventListener("DOMContentLoaded", () => {
   initBrunch();
   initFinal();
 
-  // I bottoni "Continua" che non hanno logica dedicata di selezione
+  // Dall'alloggio: chi dorme in location (Ca' Salva) salta la navetta e va
+  // direttamente al brunch; gli altri passano per lo step navetta.
   document.getElementById("hotel-continue").addEventListener("click", () => {
-    prepareNavetta();
-    showStep("step-navetta");
+    if (state.guest && state.guest.hotel === "Ca' Salva") {
+      state.navetta = "non_applicabile"; // dorme in location: navetta non serve
+      saveSession();
+      prepareBrunch();
+      showStep("step-brunch");
+    } else {
+      prepareNavetta();
+      showStep("step-navetta");
+    }
   });
 
   // Countdown
