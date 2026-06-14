@@ -90,7 +90,7 @@ const MESSAGES = {
 
   // STEP 1c — quiz superato: messaggio di congratulazioni (riceve il nome)
   quizCongrats: (nome) =>
-    `Bravo ${nome}, le hai azzeccate tutte! 🎉 Sei ufficialmente pronto: ora ti sveliamo dove dormirai e tutti i dettagli della giornata.`,
+    `Bravo ${nome}, hai superato la prova! Ora ti sveliamo dove dormirai :)`,
 
   // STEP 1 — quiz fallito dopo tutti i tentativi (schermata di blocco)
   quizFailed:
@@ -102,7 +102,7 @@ const MESSAGES = {
 
   // STEP 2 — caso "alloggio autonomo" (Massimiliano Facchini, Annalisa Lecca)
   hotelAutonomo:
-    "Voi due siete decisamente troppo organizzati per noi! 😄 Avete già il vostro alloggio personale, quindi godetevelo con calma. Vi aspettiamo in location dalle <strong>18:00</strong>, con cerimonia alle <strong>19:00</strong>. Mi raccomando: non arrivate troppo riposati, qui si balla fino a tardi!",
+    "Siete e rimarrete sempre i soliti <strong>COMUNISTI</strong>! 😄 Voi avete già il vostro alloggio, quindi unica raccomandazione: <strong>non spaccatevi le corna in bici</strong> prima del matrimonio, vi vogliamo interi! Vi aspettiamo in location dalle <strong>18:00</strong>, cerimonia alle <strong>19:00</strong>.",
 
   // STEP 2 — caso ospiti che dormono in location (Ca' Salva)
   hotelLocation:
