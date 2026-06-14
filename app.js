@@ -49,8 +49,8 @@ const FUZZY_THRESHOLD = 2;
 const QUIZ_QUESTIONS = [
   {
     domanda: "Dove si sono conosciuti Tessa e Mattia?",
-    opzioni: ["Pertini", "Juelp"],
-    rispostaCorretta: 1 // <-- Juelp
+    opzioni: ["Pertini", "Julep"],
+    rispostaCorretta: 1 // <-- Julep
   },
   {
     domanda: "Chi ha organizzato questo matrimonio?",
@@ -219,7 +219,18 @@ const GUESTS = [
 
   // ALLOGGIO AUTONOMO (messaggio scherzoso, no info hotel standard)
   {nome:"Massimiliano", cognome:"Facchini", hotel:null, indirizzo:null, alloggioAutonomo:true},
-  {nome:"Annalisa", cognome:"Lecca", hotel:null, indirizzo:null, alloggioAutonomo:true}
+  {nome:"Annalisa", cognome:"Lecca", hotel:null, indirizzo:null, alloggioAutonomo:true},
+
+  // ===========================================================================
+  // OSPITI DI TEST — solo per le prove. RIMUOVERE prima del matrimonio.
+  // Tutti con cognome "Test" così sono facili da trovare ed eliminare.
+  // Coprono i vari casi: hotel normale, location (Ca' Salva), alloggio autonomo.
+  // ===========================================================================
+  {nome:"Uno", cognome:"Test", hotel:"Villa de' Giacomi", indirizzo:"Via Tito Livio, 7, 35037 Teolo PD"},
+  {nome:"Due", cognome:"Test", hotel:"Locanda al Piccolo Colle", indirizzo:"Via Euganea Bresseo, 86, 35037 Teolo PD"},
+  {nome:"Tre", cognome:"Test", hotel:"Ai Gradoni", indirizzo:"Via Castelnuovo 19, 35037 Teolo, Italia"},
+  {nome:"Quattro", cognome:"Test", hotel:"Ca' Salva", indirizzo:"Via Venda, 1, 35037 Teolo PD", mapsLink:"https://www.google.com/maps/search/?api=1&query=Via+Venda+1+35037+Teolo+PD"},
+  {nome:"Cinque", cognome:"Test", hotel:null, indirizzo:null, alloggioAutonomo:true}
 ];
 
 
